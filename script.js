@@ -144,13 +144,9 @@ function showHabitDetail(habitId) {
     const habit = allHabits.find(h => h.id === habitId);
 
     if (!habit) {
-        // Handle case where habit is not found
         console.error('Habit not found:', habitId);
         return;
     }
-
-    // Update URL for direct linking/refresh
-    history.pushState({ habitId: habit.id }, habit.name, `#habit/${habit.id}`);
 
     document.getElementById('detail-habit-name').textContent = habit.name;
     document.getElementById('detail-habit-category').textContent = habit.category;
@@ -182,7 +178,6 @@ function showHabitDetail(habitId) {
 }
 
 function showHomePage() {
-    history.pushState(null, 'Home', '#/');
     habitDetailPage.classList.add('hidden');
     homePage.classList.remove('hidden');
 }
@@ -193,23 +188,8 @@ homeLink.addEventListener('click', (e) => {
     showHomePage();
 });
 
-// Handle browser back/forward buttons
-window.addEventListener('popstate', (event) => {
-    if (event.state && event.state.habitId) {
-        showHabitDetail(event.state.habitId);
-    } else {
-        showHomePage();
-    }
-});
-
 // --- INITIAL LOAD ---
 document.addEventListener('DOMContentLoaded', () => {
     renderHabitList();
-    // Check URL for direct link to detail page
-    if (window.location.hash.startsWith('#habit/')) {
-        const habitId = window.location.hash.split('/')[1];
-        showHabitDetail(habitId);
-    } else {
-        showHomePage();
-    }
+    showHomePage();
 });
