@@ -1,13 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habit Tracker</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Habit Tracker</h1>
+            <a href="#" id="home-link">Home</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div id="home-page">
+            <h2>Your Habits</h2>
+            <div id="habit-list" class="grid-container">
+                <!-- Habit items will be rendered here by JavaScript -->
+            </div>
+        </div>
+
+        <div id="habit-detail-page" class="hidden">
+            <h2 id="detail-habit-name"></h2>
+            <p id="detail-habit-category"></p>
+
+            <h3>Descriptive Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Completion Rate</h4>
+                    <p id="stat-completion-rate"></p>
+                </div>
+                <div class="stat-card">
+                    <h4>Consistency Score</h4>
+                    <p id="stat-consistency"></p>
+                </div>
+                <div class="stat-card">
+                    <h4>30-Day Trend</h4>
+                    <p id="stat-trend"></p>
+                </div>
+            </div>
+
+            <h3>Correlation Insights</h3>
+            <div id="correlation-insights" class="grid-container">
+                <!-- Correlation cards will be rendered here by JavaScript -->
+            </div>
+
+            <h3>Visualizations</h3>
+            <div class="visualization-grid">
+                <div class="chart-placeholder">Yearly Consistency Heatmap (Placeholder)</div>
+                <div class="chart-placeholder">Category Distribution Pie Chart (Placeholder)</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="statsEngine.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
