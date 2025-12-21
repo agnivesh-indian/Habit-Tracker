@@ -1,24 +1,21 @@
-
 import React from 'react';
 import { calculateCompletionRate, calculateConsistency, calculateTrendVelocity, analyzeCorrelations } from '../utils/statsEngine';
 
-// --- MOCK DATA (for demonstration) ---
-const mockHabit = {
-  id: 'h1',
-  name: 'Work Out',
-  category: 'Health',
-  goalType: 'daily',
-  logs: [
-    { date: '2025-11-01', completed: true },
-    { date: '2025-11-02', completed: false },
-    { date: '2025-11-03', completed: true },
-    { date: '2025-11-04', completed: true },
-    // ... more logs
-  ],
-};
-
+// In a real app, you'd fetch this data from an API
 const mockAllHabits = [
-  mockHabit,
+  {
+    id: 'h1',
+    name: 'Work Out',
+    category: 'Health',
+    goalType: 'daily',
+    logs: [
+      { date: '2025-11-01', completed: true },
+      { date: '2025-11-02', completed: false },
+      { date: '2025-11-03', completed: true },
+      { date: '2025-11-04', completed: true },
+      // ... more logs
+    ],
+  },
   {
     id: 'h2',
     name: 'Sleep 8+ hours',
@@ -70,11 +67,17 @@ const CorrelationCard = ({ habitName, likelihoodIncrease }) => (
 
 // --- MAIN COMPONENT ---
 
-const HabitDetailView = ({ habit = mockHabit, allHabits = mockAllHabits }) => {
+const HabitDetailView = ({ habitId }) => {
+  const habit = mockAllHabits.find(h => h.id === habitId);
+
+  if (!habit) {
+    return <div className="text-center text-red-500">Habit not found</div>;
+  }
+
   const completionRate = calculateCompletionRate(habit).toFixed(1);
   const consistency = calculateConsistency(habit).toFixed(2);
   const trend = calculateTrendVelocity(habit).toFixed(1);
-  const correlations = analyzeCorrelations(habit, allHabits);
+  const correlations = analyzeCorrelations(habit, mockAllHabits);
 
   return (
     <div className="bg-gray-50 p-8 font-sans">
