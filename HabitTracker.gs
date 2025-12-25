@@ -64,7 +64,7 @@ function setupDashboardUI(ss) {
 
   // Donut Chart Area
   dashboard.getRange("B4:D10").merge().setFormula(
-    '=SPARKLINE({INDIRECT("System_Data!B2"), INDIRECT("System_Data!C2")-INDIRECT("System_Data!B2")}, {"charttype","pie";"colors","\\'#00FF00\\',\'#E0E0E0\'"})'
+    '=SPARKLINE({INDIRECT("System_Data!B2"), INDIRECT("System_Data!C2")-INDIRECT("System_Data!B2")}, {"charttype","pie";"colors","\'#00FF00\',\'#E0E0E0\'"})'
   ).setHorizontalAlignment("center").setVerticalAlignment("middle");
   dashboard.getRange("E4:H10").merge().setValue("Your progress will appear here as you check off habits.")
       .setHorizontalAlignment("center").setVerticalAlignment("middle").setFontColor("#666666");
